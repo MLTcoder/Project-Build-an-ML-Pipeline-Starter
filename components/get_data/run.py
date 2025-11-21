@@ -8,7 +8,17 @@ import os
 
 import wandb
 
+import sys
+from pathlib import Path
+
+# Make sure the parent "components" directory (which contains wandb_utils) is on sys.path
+CURRENT_DIR = Path(__file__).resolve()
+COMPONENTS_DIR = CURRENT_DIR.parents[1]  # .../components
+if str(COMPONENTS_DIR) not in sys.path:
+    sys.path.insert(0, str(COMPONENTS_DIR))
+
 from wandb_utils.log_artifact import log_artifact
+
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
